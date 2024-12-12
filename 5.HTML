@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قوتابخانةى قةلاى ئيواران</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>قوتابخانةى قةلاى ئيواران</h1>
+        <button class="button" onclick="goToPage2()">جونة زورةوة</button>
+    </div>
+
+    <script>
+        function goToPage2() {
+            window.location.href = "page2.html";
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختيار الأزرار</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>اختيار الأزرار</h1>
+        <button class="button" onclick="goToPage3('7A')">7A</button>
+        <button class="button" onclick="goToPage3('7B')">7B</button>
+        <button class="button" onclick="goToPage3('8A')">8A</button>
+        <button class="button" onclick="goToPage3('8B')">8B</button>
+        <button class="button" onclick="goToPage3('9A')">9A</button>
+        <button class="button" onclick="goToPage3('9B')">9B</button>
+        <button class="button" onclick="goToPage3('9D')">9D</button>
+        <button class="button" onclick="goToPage3('9G')">9G</button>
+        <br><br>
+        <button class="button" onclick="goBack()">الرجوع</button>
+    </div>
+
+    <script>
+        function goToPage3(button) {
+            window.location.href = `page3.html?button=${button}`;
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختيار الشهر</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>اختيار الشهر</h1>
+        <button class="button" onclick="goToPage4(9)">9</button>
+        <button class="button" onclick="goToPage4(10)">10</button>
+        <button class="button" onclick="goToPage4(11)">11</button>
+        <button class="button" onclick="goToPage4(12)">12</button>
+        <button class="button" onclick="goToPage4(1)">1</button>
+        <button class="button" onclick="goToPage4(2)">2</button>
+        <button class="button" onclick="goToPage4(3)">3</button>
+        <button class="button" onclick="goToPage4(4)">4</button>
+        <button class="button" onclick="goToPage4(5)">5</button>
+        <button class="button" onclick="goToPage4(6)">6</button>
+        <br><br>
+        <button class="button" onclick="goBack()">الرجوع</button>
+    </div>
+
+    <script>
+        function goToPage4(month) {
+            window.location.href = `page4.html?month=${month}`;
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختيار اليوم</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>اختيار اليوم</h1>
+        <div id="days"></div>
+        <br><br>
+        <button class="button" onclick="goBack()">الرجوع</button>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const daysDiv = document.getElementById('days');
+            for (let i = 1; i <= 31; i++) {
+                const button = document.createElement('button');
+                button.className = 'button';
+                button.innerHTML = i;
+                button.onclick = function() {
+                    goToPage5(i);
+                };
+                daysDiv.appendChild(button);
+            }
+        };
+
+        function goToPage5(day) {
+            window.location.href = `page5.html?day=${day}`;
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدخال الأسماء والرموز</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>إدخال الأسماء والرموز</h1>
+        <div id="inputs"></div>
+
+        <button class="color-btn red" onclick="addSymbol('غ')">غ</button>
+        <button class="color-btn blue" onclick="addSymbol('ح')">ح</button>
+        <button class="color-btn yellow" onclick="addSymbol('م')">م</button>
+
+        <br><br>
+        <button class="button" onclick="saveToExcel()">حفظ إلى Excel</button>
+        <br><br>
+        <button class="button" onclick="goBack()">الرجوع</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <script>
+        window.onload = function() {
+            const inputsDiv = document.getElementById('inputs');
+            for (let i = 0; i < 40; i++) {
+                const inputName = document.createElement('input');
+                inputName.type = 'text';
+                inputName.className = 'input-field';
+                inputName.placeholder = `اسم ${i + 1}`;
+
+                const inputSymbol = document.createElement('input');
+                inputSymbol.type = 'text';
+                inputSymbol.className = 'input-field';
+                inputSymbol.placeholder = 'رمز';
+
+                inputsDiv.appendChild(inputName);
+                inputsDiv.appendChild(inputSymbol);
+            }
+        };
+
+        function addSymbol(symbol) {
+            const inputs = document.getElementsByClassName('input-field');
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i].placeholder === 'رمز' && inputs[i].value === '') {
+                    inputs[i].value = symbol;
+                    break;
+                }
+            }
+        }
+
+        function saveToExcel() {
+            const inputs = document.getElementsByClassName('input-field');
+            const data = [];
+            for (let i = 0; i < inputs.length; i += 2) {
+                data.push([inputs[i].value, inputs[i + 1].value]);
+            }
+
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Data');
+            XLSX.writeFile(wb, 'data.xlsx');
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
